@@ -1,20 +1,28 @@
 # Awesome Coding Agents
 
-> A curated list of resources on LLM-based coding agents, software engineering benchmarks, harness design, workflow integration, and open-source systems.
+> A curated list of papers, benchmarks, harness design notes, workflow-native systems, and open-source tools for LLM-based coding agents.
 
-This repository is a lightweight, public-facing resource hub inspired by "awesome list" style repositories. It focuses on the ecosystem around coding agents rather than on any single paper draft or unpublished manuscript.
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-## What This List Covers
+Coding agents are moving beyond autocomplete and chat. The interesting action now sits at the intersection of repository context, tool use, verification loops, issue-to-PR workflows, and deployment controls.
 
-- Repository-level coding agents
-- Software engineering benchmarks and evaluation realism
-- Harness and scaffold design
-- Workflow-native development surfaces such as issues, pull requests, reviews, and CI
-- Open-source tools, official engineering write-ups, and representative academic papers
+This repository tracks that shift with a systems-first lens.
 
-## Why This Repo Exists
+## Why This List Is Different
 
-The coding-agent landscape is changing quickly. Progress now depends not only on raw model quality, but also on repository context, tool access, verification loops, and workflow integration. This list organizes resources around that systems view.
+- It is organized around workflow, evaluation, and system design rather than vendor hype.
+- It separates benchmark evidence from product claims and official engineering notes.
+- It focuses on repository-scale and workflow-native coding agents, not generic code generation.
+
+## Quick Start
+
+- New to the area: start with [Surveys and Roadmaps](#surveys-and-roadmaps)
+- Want the benchmark picture: jump to [Benchmarks and Evaluation](#benchmarks-and-evaluation)
+- Care about what actually makes agents work: read [Harness and Repository-Aware Design](#harness-and-repository-aware-design)
+- Tracking products and deployment surfaces: see [Workflow-Native Products and Systems](#workflow-native-products-and-systems)
+- Looking for tooling: browse [Open-Source Projects](#open-source-projects)
 
 ## Contents
 
@@ -24,9 +32,14 @@ The coding-agent landscape is changing quickly. Progress now depends not only on
 - [Workflow-Native Products and Systems](#workflow-native-products-and-systems)
 - [Open-Source Projects](#open-source-projects)
 - [Selected Software Engineering Papers](#selected-software-engineering-papers)
+- [Reading Paths](#reading-paths)
+- [Contribution Principles](#contribution-principles)
 - [Contributing](#contributing)
+- [License](#license)
 
 ## Surveys and Roadmaps
+
+Foundational overviews for understanding the coding-agent landscape at a high level.
 
 - [AI Agentic Programming: A Survey of Techniques, Challenges, and Opportunities](https://arxiv.org/abs/2508.11126)
 - [A Comprehensive Survey on Benchmarks and Solutions in Software Engineering of LLM-Empowered Agentic System](https://arxiv.org/abs/2510.09721)
@@ -34,7 +47,9 @@ The coding-agent landscape is changing quickly. Progress now depends not only on
 
 ## Benchmarks and Evaluation
 
-### Coding-agent benchmarks
+Benchmarks are useful, but they often hide scaffold sensitivity, weak tests, contamination, or workflow mismatch.
+
+### Core coding-agent benchmarks
 
 - [SWE-bench: Can Language Models Resolve Real-World GitHub Issues?](https://openreview.net/forum?id=VTF8yNQM66)
 - [SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering](https://proceedings.neurips.cc/paper_files/paper/2024/hash/5a7c947568c1b1328ccc5230172e1e7c-Abstract-Conference.html)
@@ -44,15 +59,17 @@ The coding-agent landscape is changing quickly. Progress now depends not only on
 - [BigCodeBench: Benchmarking Code Generation with Diverse Function Calls and Complex Instructions](https://openreview.net/forum?id=YrycTjllL0)
 - [MLE-bench: Evaluating Machine Learning Agents on Machine Learning Engineering](https://openai.com/index/mle-bench/)
 
-### Practical evaluation questions
+### Evaluation questions worth keeping in mind
 
-- Task realism and underspecification
-- Environment setup and dependency reproducibility
-- Harness sensitivity and scaffold variance
-- Test quality, leakage, and contamination
-- Workflow realism beyond isolated patch generation
+- How realistic is the task setup?
+- How much does the result depend on the harness or scaffold?
+- Are the tests trustworthy, stable, and contamination-resistant?
+- Does the benchmark reflect issue-to-PR or CI-coupled work, or just isolated patching?
+- Is environment setup part of the problem, or silently abstracted away?
 
 ## Harness and Repository-Aware Design
+
+This section covers the substrate that often matters as much as the model itself: retrieval, repo maps, execution setup, monitors, and long-running harness design.
 
 - [RepoCoder: Repository-Level Code Completion Through Iterative Retrieval and Generation](https://aclanthology.org/2023.emnlp-main.151/)
 - [Repoformer: Selective Retrieval for Repository-Level Code Completion](https://proceedings.mlr.press/v235/wu24a.html)
@@ -62,6 +79,8 @@ The coding-agent landscape is changing quickly. Progress now depends not only on
 - [Harness Design for Long-Running Application Development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
 
 ## Workflow-Native Products and Systems
+
+The product shift is no longer just about generating code. It is about where agents live, what they can touch, and how they participate in software delivery workflows.
 
 ### Official docs and product notes
 
@@ -78,17 +97,19 @@ The coding-agent landscape is changing quickly. Progress now depends not only on
 - [Introducing GPT-5.2-Codex](https://openai.com/index/introducing-gpt-5-2-codex/)
 - [Introducing GPT-5.3-Codex](https://openai.com/index/introducing-gpt-5-3-codex/)
 
-### Workflow surfaces worth tracking
+### Workflow surfaces to watch
 
 - Issue intake and triage
 - Repository navigation and retrieval
-- Local shell and tool execution
+- Shell and tool execution
 - Pull request generation
-- Code review follow-up
+- Review-thread follow-up
 - CI-aware iteration
 - Human approval and governed deployment
 
 ## Open-Source Projects
+
+If you want to study real tools instead of just papers, these are useful starting points.
 
 - [OpenHands](https://github.com/OpenHands/OpenHands)
 - [Aider](https://github.com/Aider-AI/aider)
@@ -96,7 +117,9 @@ The coding-agent landscape is changing quickly. Progress now depends not only on
 
 ## Selected Software Engineering Papers
 
-### Repository-scale and autonomous repair
+Representative work adjacent to coding agents, with emphasis on repair, testing, verification, and repository-scale software engineering.
+
+### Repository-scale repair and auditing
 
 - [AutoCodeRover: Autonomous Program Improvement](https://2024.issta.org/details/issta-2024-papers/127/AutoCodeRover-Autonomous-Program-Improvement)
 - [RepoAudit: An Autonomous LLM-Agent for Repository-Level Code Auditing](https://openreview.net/forum?id=TXcifVbFpG)
@@ -111,27 +134,27 @@ The coding-agent landscape is changing quickly. Progress now depends not only on
 - [Towards AI-Assisted Synthesis of Verified Dafny Methods](https://2024.esec-fse.org/details/fse-2024-research-papers/75/Towards-AI-Assisted-Synthesis-of-Verified-Dafny-Methods)
 - [Can Large Language Models Transform Natural Language Intent into Formal Method Postconditions?](https://2024.esec-fse.org/details/fse-2024-research-papers/51/Can-Large-Language-Models-Transform-Natural-Language-Intent-into-Formal-Method-Postco)
 
-### Broader SE tasks
+### Broader software engineering tasks
 
 - [CoderUJB: An Executable and Unified Java Benchmark for Practical Programming Scenarios](https://2024.issta.org/details/issta-2024-papers/11/CoderUJB-An-Executable-and-Unified-Java-Benchmark-for-Practical-Programming-Scenario)
 - [LPR: Large Language Models-Aided Program Reduction](https://2024.issta.org/details/issta-2024-papers/22/LPR-Large-Language-Models-Aided-Program-Reduction)
 - [Software Model Evolution with Large Language Models](https://arxiv.org/abs/2406.17651)
 - [Leveraging Large Language Models for the Auto-remediation of Microservice Applications](https://2024.esec-fse.org/details/fse-2024-industry/34/Leveraging-Large-Language-Models-for-the-Auto-remediation-of-Microservice-Application)
 
-## Suggested Reading Paths
+## Reading Paths
 
-- If you care about benchmarks: start with SWE-bench, SWE-agent, SWE-bench Verified, and SWE-rebench.
-- If you care about system design: read RepoCoder, Repoformer, Repo2Run, and the harness engineering write-ups.
-- If you care about product direction: compare GitHub Agent HQ, Claude Code, Jules, Codex, Cursor, Windsurf, OpenHands, and Aider.
-- If you care about software engineering impact: focus on evaluation realism, repository legibility, review loops, and CI integration.
+- Benchmark-focused: start with SWE-bench, SWE-agent, SWE-bench Verified, and SWE-rebench.
+- Systems-focused: read RepoCoder, Repoformer, Repo2Run, and the harness design write-ups.
+- Product-focused: compare GitHub Agent HQ, Claude Code, Jules, Codex, Cursor, Windsurf, OpenHands, and Aider.
+- SE-impact-focused: focus on evaluation realism, repository legibility, review loops, CI integration, and deployment controls.
 
 ## Contribution Principles
 
 - Prefer primary sources over summaries.
 - Distinguish benchmark evidence from product claims.
-- Add links that are likely to remain stable.
-- Keep descriptions short and neutral.
-- Avoid vendor marketing language when a paper or doc can say it more precisely.
+- Prefer stable links to papers, docs, and official repositories.
+- Keep annotations short, factual, and easy to scan.
+- Avoid hype when a more precise description is available.
 
 ## Contributing
 
