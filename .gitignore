@@ -1,0 +1,8 @@
+# Ignore everything in this paper directory by default.
+*
+
+# Keep the public-facing repository files.
+!.gitignore
+!README.md
+!CONTRIBUTING.md
+!LICENSE
